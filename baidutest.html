@@ -27,10 +27,42 @@
      map.addOverlay(marker); // 将标注添加到地图中
      marker.enableDragging();
      marker.addEventListener("dragend", function(e){
-     alert("当前位置：" + e.point.lng + ", " + e.point.lat);
-     map.removeOverlay(marker);
-     marker.dispose();
-});
+        alert("当前位置：" + e.point.lng + ", " + e.point.lat);
+
+                                                    });
+        // map.removeOverlay(marker);
+        // marker.dispose();  // 地图标注清除
+        /******* 地图信息窗口部分
+    var opts = {
+    width : 250, // 信息窗口宽度
+    height: 100, // 信息窗口高度
+    title : "Hello" // 信息窗口标题
+    }
+    // 创建信息窗口对象
+    var infoWindow = new BMap.InfoWindow("World", opts);
+    // 打开信息窗口
+    map.openInfoWindow(infoWindow, map.getCenter());
+    *************/
+    var polyline = new BMap.Polyline([
+    new BMap.Point(116.399, 39.910),
+    new BMap.Point(116.405, 39.920),
+    new BMap.Point(116.425, 39.930)
+    ],{strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5}
+    );
+    map.addOverlay(polyline);
+    var opts = {
+    position : point, // 指定文本标注所在的地理位置
+    offset : new BMap.Size(30, -30) //设置文本偏移量
+    }
+    var label = new BMap.Label("欢迎使用百度地图，这是一个简单的文本标注哦~", opts); // 创建文本标注对象
+    label.setStyle({
+    color : "red",
+    fontSize : "12px",
+    height : "20px",
+    lineHeight : "20px",
+    fontFamily:"微软雅黑"
+    });
+    map.addOverlay(label);
     </script>
 </body>
 </html>
